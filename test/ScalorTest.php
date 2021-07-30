@@ -23,35 +23,66 @@ class ScalorTest extends TestCase
     public function provideTestFilterNotes()
     {
         return [
-            'C scale' => [
+            'C dia' => [
                 'key' => 'c',
                 'intervals' => ['T', '2', '3', '4', '5', '6', '7'],
                 'scale' => ['c', 'd', 'e', 'f', 'g', 'a', 'b'],
             ],
-            'cm scale' => [
+            'cm dia' => [
                 'key' => 'c',
                 'intervals' => ['T', '2', '3m', '4', '5', '6m', '7m'],
                 'scale' => ['c', 'd', 'e♭', 'f', 'g', 'a♭', 'b♭'],
             ],
-            'cm penta scale' => [
+            'cm penta' => [
                 'key' => 'c',
                 'intervals' => ['T', '3m', '4', '5', '7'],
                 'scale' => ['c', 'e♭', 'f', 'g', 'b'],
             ],
-            'A scale' => [
+            'C chromatic' => [
+                'key' => 'c',
+                'intervals' => ['T', '2m', '2', '3m', '3', '4', '5m', '5', '6m', '6', '7m', '7'],
+                //note: we have only the descending scale
+                'scale' => ['c', 'd♭', 'd', 'e♭', 'e', 'f', 'g♭', 'g', 'a♭', 'a', 'b♭', 'b'],
+            ],
+
+            'C♭ dia' => [
+                'key' => 'c♭',
+                'intervals' => ['T', '2', '3', '4', '5', '6', '7'],
+                'scale' => ['c♭', 'd♭', 'e♭', 'f♭', 'g♭', 'a♭', 'b♭'],
+            ],
+
+            'C♯ dia' => [
+                'key' => 'c♯',
+                'intervals' => ['T', '2', '3', '4', '5', '6', '7'],
+                'scale' => ['c♯', 'd♯', 'e♯', 'f♯', 'g♯', 'a♯', 'b♯'],
+            ],
+
+            'A dia' => [
                 'key' => 'a',
                 'intervals' => ['T', '2', '3', '4', '5', '6', '7'],
                 'scale' => ['a', 'b', 'c♯', 'd', 'e', 'f♯', 'g♯',],
             ],
-            'am scale' => [
+            'am dia' => [
                 'key' => 'a',
                 'intervals' => ['T', '2', '3m', '4', '5', '6m', '7m'],
                 'scale' => ['a', 'b', 'c', 'd', 'e', 'f', 'g'],
             ],
-            'am penta scale' => [
+            'am penta' => [
                 'key' => 'a',
                 'intervals' => ['T', '3m', '4', '5', '7'],
                 'scale' => ['a', 'c', 'd', 'e', 'g♯'],
+            ],
+
+            'a♭m dia' => [
+                'key' => 'a♭',
+                'intervals' => ['T', '2', '3m', '4', '5', '6m', '7m'],
+                'scale' => ['a♭', 'b♭', 'c♭', 'd♭', 'e♭', 'f♭', 'g♭'],
+            ],
+
+            'a♯m dia' => [
+                'key' => 'a♯',
+                'intervals' => ['T', '2', '3m', '4', '5', '6m', '7m'],
+                'scale' => ['a♯', 'b♯', 'c♯', 'd♯', 'e♯', 'f♯', 'g♯'],
             ],
         ];
     }

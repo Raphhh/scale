@@ -2,21 +2,22 @@
 namespace Scale;
 
 use InvalidArgumentException;
+use OutOfRangeException;
 
 class Scalor
 {
     const NOTES = [
-        ['a', 'a'],
+        ['a'],
         ['a♯', 'b♭'],
-        ['b', 'b'],
-        ['c', 'c'],
+        ['b', 'c♭'],
+        ['c', 'b♯'],
         ['c♯', 'd♭'],
-        ['d', 'd'],
+        ['d'],
         ['d♯', 'e♭'],
-        ['e', 'e'],
-        ['f', 'f'],
+        ['e', 'f♭'],
+        ['f', 'e♯'],
         ['f♯', 'g♭'],
-        ['g', 'g'],
+        ['g'],
         ['g♯', 'a♭'],
     ];
 
@@ -51,10 +52,13 @@ class Scalor
      */
     public function filterNotes($key, array $intervals) {
         $notes = $this->getChromaticNotesFromKey($key);
+        $dia = $this->getDiaNotesFromKey($key);
         $result = [];
         foreach ($intervals as $interval) {
-            $isMinor = strpos($interval, 'm') === 1;
-            $result[$interval] = $notes[$this->convertIntervalName($interval)][$isMinor ? 1 : 0];
+            $result[$interval] = $this->conformNote(
+                $notes[$this->convertIntervalName($interval)],
+                $dia[$this->convertIntervalToDegree($interval)]
+            );
         }
         return $result;
     }
@@ -68,6 +72,27 @@ class Scalor
             throw new InvalidArgumentException(sprintf('key not supported: %s', $key));
         }
         return $this->indexedNotes[$key];
+    }
+
+    /**
+     * @param $key
+     * @return array
+     */
+    private function getDiaNotesFromKey($key) {
+        $key = $this->getPureNote($key);
+        $notes = str_split('abcdefg');
+        $result = [];
+        $degree = 1;
+        foreach($notes as $note) {
+            if ($result || $note === $key) {
+                $result[$degree++] = $note;
+            }
+        }
+        $missing = count($notes) - count($result);
+        for ($i = 0; $i < $missing; ++$i) {
+            $result[$degree++] = $notes[$i];
+        }
+        return $result;
     }
 
     /**
@@ -105,5 +130,41 @@ class Scalor
             }
         }
         return $result;
+    }
+
+    /**
+     * @param string[] $notes
+     * @param string $pure
+     * @return string
+     */
+    private function conformNote(array $notes, $pure)
+    {
+        foreach ($notes as $note) {
+            if (strpos($note, $pure) === 0) {
+                return $note;
+            }
+        }
+        throw new OutOfRangeException('no note found from pure note ' . $pure);
+    }
+
+    /**
+     * @param string $note
+     * @return string
+     */
+    private function getPureNote($note)
+    {
+        return str_replace(['♯', '♭'], '', $note);
+    }
+
+    /**
+     * @param string $interval
+     * @return string
+     */
+    private function convertIntervalToDegree($interval)
+    {
+        if ($interval === 'T') {
+            return 1;
+        }
+        return str_replace('m', '', $interval);
     }
 }
