@@ -27,4 +27,10 @@
     <php>
         <ini name="error_reporting" value="-1" />
     </php>
+
+    <testsuites>
+        <testsuite name="unit">
+            <directory>./test/</directory>
+        </testsuite>
+    </testsuites>
 </phpunit>
