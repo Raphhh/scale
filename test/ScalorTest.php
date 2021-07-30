@@ -23,12 +23,12 @@ class ScalorTest extends TestCase
     public function provideTestFilterNotes()
     {
         return [
-            'c scale' => [
+            'C scale' => [
                 'key' => 'c',
                 'intervals' => ['T', '2', '3', '4', '5', '6', '7'],
                 'scale' => ['c', 'd', 'e', 'f', 'g', 'a', 'b'],
             ],
-            'c m scale' => [
+            'cm scale' => [
                 'key' => 'c',
                 'intervals' => ['T', '2', '3m', '4', '5', '6m', '7m'],
                 'scale' => ['c', 'd', 'e♭', 'f', 'g', 'a♭', 'b♭'],
@@ -38,12 +38,12 @@ class ScalorTest extends TestCase
                 'intervals' => ['T', '3m', '4', '5', '7'],
                 'scale' => ['c', 'e♭', 'f', 'g', 'b'],
             ],
-            'a scale' => [
+            'A scale' => [
                 'key' => 'a',
                 'intervals' => ['T', '2', '3', '4', '5', '6', '7'],
                 'scale' => ['a', 'b', 'c♯', 'd', 'e', 'f♯', 'g♯',],
             ],
-            'a m scale' => [
+            'am scale' => [
                 'key' => 'a',
                 'intervals' => ['T', '2', '3m', '4', '5', '6m', '7m'],
                 'scale' => ['a', 'b', 'c', 'd', 'e', 'f', 'g'],
