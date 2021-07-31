@@ -141,4 +141,100 @@ class ScalorTest extends TestCase
             ],
         ];
     }
+
+    /**
+     * @param $key
+     * @param array $result
+     * @dataProvider provideTestGetChromaticNotesFromKey
+     */
+    public function testGetChromaticNotesFromKey($key, array $result, $simplifyAccidental, $simplifyTemperament)
+    {
+        $scalor = new Scalor();
+        $this->assertSame(
+            $result,
+            $scalor->getChromaticNotesFromKey($key, $simplifyAccidental, $simplifyTemperament)
+        );
+    }
+
+    public function provideTestGetChromaticNotesFromKey()
+    {
+        return [
+            'all' => [
+                'key' => 'c',
+                'result' => [
+                    ['b♯', 'c', 'd♭♭'],
+                    ['b♯♯', 'c♯', 'd♭'],
+                    ['c♯♯', 'd', 'e♭♭'],
+                    ['d♯', 'e♭', 'f♭♭'],
+                    ['d♯♯', 'e', 'f♭'],
+                    ['e♯', 'f', 'g♭♭'],
+                    ['e♯♯', 'f♯', 'g♭'],
+                    ['f♯♯', 'g', 'a♭♭'],
+                    ['g♯', 'a♭'],
+                    ['g♯♯', 'a', 'b♭♭'],
+                    ['a♯', 'b♭', 'c♭♭'],
+                    ['a♯♯', 'b', 'c♭'],
+                ],
+                'simplify_accidental' => false,
+                'simplify_temperament' => false,
+            ],
+            'simplify_accidental' => [
+                'key' => 'c',
+                'result' => [
+                    ['b♯', 'c'],
+                    ['c♯', 'd♭'],
+                    ['d'],
+                    ['d♯', 'e♭'],
+                    ['e', 'f♭'],
+                    ['e♯', 'f'],
+                    ['f♯', 'g♭'],
+                    ['g'],
+                    ['g♯', 'a♭'],
+                    ['a'],
+                    ['a♯', 'b♭'],
+                    ['b', 'c♭'],
+                ],
+                'simplify_accidental' => true,
+                'simplify_temperament' => false,
+            ],
+            'simplify_temperament' => [
+                'key' => 'c',
+                'result' => [
+                    ['c', 'd♭♭'],
+                    ['b♯♯', 'c♯', 'd♭'],
+                    ['c♯♯', 'd', 'e♭♭'],
+                    ['d♯', 'e♭', 'f♭♭'],
+                    ['d♯♯', 'e'],
+                    ['f', 'g♭♭'],
+                    ['e♯♯', 'f♯', 'g♭'],
+                    ['f♯♯', 'g', 'a♭♭'],
+                    ['g♯', 'a♭'],
+                    ['g♯♯', 'a', 'b♭♭'],
+                    ['a♯', 'b♭', 'c♭♭'],
+                    ['a♯♯', 'b'],
+                ],
+                'simplify_accidental' => false,
+                'simplify_temperament' => true,
+            ],
+            'simplify_accidental' => [
+                'key' => 'c',
+                'result' => [
+                    ['c'],
+                    ['c♯', 'd♭'],
+                    ['d'],
+                    ['d♯', 'e♭'],
+                    ['e'],
+                    ['f'],
+                    ['f♯', 'g♭'],
+                    ['g'],
+                    ['g♯', 'a♭'],
+                    ['a'],
+                    ['a♯', 'b♭'],
+                    ['b'],
+                ],
+                'simplify_accidental' => true,
+                'simplify_temperament' => true,
+            ],
+        ];
+    }
 }

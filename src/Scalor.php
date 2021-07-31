@@ -100,13 +100,26 @@ class Scalor
 
     /**
      * @param $key
+     * @param bool $simplifyAccidental
+     * @param bool $simplifyTemperament
      * @return mixed
      */
-    public function getChromaticNotesFromKey($key) {
+    public function getChromaticNotesFromKey($key, $simplifyAccidental = false, $simplifyTemperament = false) {
         if (!array_key_exists($key, $this->indexedNotes)) {
             throw new InvalidArgumentException(sprintf('key not supported: %s', $key));
         }
-        return $this->indexedNotes[$key];
+        $result = $this->indexedNotes[$key];
+        if ($simplifyAccidental) {
+            foreach ($result as $index => $notes) {
+                $result[$index] = $this->removeAccidentals($notes);
+            }
+        }
+        if ($simplifyTemperament) {
+            foreach ($result as $index => $notes) {
+                $result[$index] = $this->removeTemperaments($notes);
+            }
+        }
+        return $result;
     }
 
     /**
@@ -201,5 +214,69 @@ class Scalor
             return 1;
         }
         return str_replace(['m', 'd', 'a'], '', $interval);
+    }
+
+    /**
+     * @param array $notes
+     * @return array
+     */
+    private function removeAccidentals(array $notes)
+    {
+        $result = [];
+        foreach ($notes as $note) {
+            $result[] = $this->simplifyAccidental($note);
+        }
+        return array_values(array_unique($result));
+    }
+
+    /**
+     * @param $note
+     * @return string
+     */
+    private function simplifyAccidental($note)
+    {
+        return [
+                'a♯♯' => 'b',
+                'a♭♭' => 'g',
+                'b♯♯' => 'c♯',
+                'b♭♭' => 'a',
+                'c♯♯' => 'd',
+                'c♭♭' => 'b♭',
+                'd♯♯' => 'e',
+                'd♭♭' => 'c',
+                'e♯♯' => 'f♯',
+                'e♭♭' => 'd',
+                'f♯♯' => 'g',
+                'f♭♭' => 'e♭',
+                'g♯♯' => 'a',
+                'g♭♭' => 'f',
+            ][$note] ?? $note;
+    }
+
+    /**
+     * @param array $notes
+     * @return array
+     */
+    private function removeTemperaments(array $notes)
+    {
+        $result = [];
+        foreach ($notes as $note) {
+            $result[] = $this->simplifyTemperament($note);
+        }
+        return array_values(array_unique($result));
+    }
+
+    /**
+     * @param $note
+     * @return string
+     */
+    private function simplifyTemperament($note)
+    {
+        return [
+            'b♯' => 'c',
+            'c♭' => 'b',
+            'e♯' => 'f',
+            'f♭' => 'e',
+        ][$note] ?? $note;
     }
 }
