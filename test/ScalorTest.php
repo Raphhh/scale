@@ -25,28 +25,28 @@ class ScalorTest extends TestCase
         return [
             'C dia' => [
                 'key' => 'c',
-                'intervals' => ['T', '2', '3', '4', '5', '6', '7'],
+                'intervals' => Scalor::MAIN_SCALES['dia']['M'],
                 'scale' => ['c', 'd', 'e', 'f', 'g', 'a', 'b'],
             ],
             'cm dia' => [
                 'key' => 'c',
-                'intervals' => ['T', '2', '3m', '4', '5', '6m', '7m'],
+                'intervals' => Scalor::MAIN_SCALES['dia']['m'],
                 'scale' => ['c', 'd', 'e♭', 'f', 'g', 'a♭', 'b♭'],
             ],
             'C penta' => [
                 'key' => 'c',
-                'intervals' => ['T', '3', '4', '5', '7'],
-                'scale' => ['c', 'e', 'f', 'g', 'b'],
+                'intervals' => Scalor::MAIN_SCALES['penta']['M'],
+                'scale' => ['c', 'e', 'f', 'g', 'a'],
             ],
             'cm penta' => [
                 'key' => 'c',
-                'intervals' => ['T', '3m', '4', '5', '7'],
-                'scale' => ['c', 'e♭', 'f', 'g', 'b'],
+                'intervals' => Scalor::MAIN_SCALES['penta']['m'],
+                'scale' => ['c', 'e♭', 'f', 'g', 'b♭'],
             ],
             'cm blues' => [
                 'key' => 'c',
-                'intervals' => ['T', '3m', '4', '5d', '5', '6'],
-                'scale' => ['c', 'e♭', 'f', 'g♭', 'g', 'a'],
+                'intervals' => Scalor::MAIN_SCALES['blues']['m'],
+                'scale' => ['c', 'e♭', 'f', 'g♭', 'g', 'b♭'],
             ],
             'C chromatic' => [
                 'key' => 'c',
@@ -57,13 +57,13 @@ class ScalorTest extends TestCase
 
             'C♭ dia' => [
                 'key' => 'c♭',
-                'intervals' => ['T', '2', '3', '4', '5', '6', '7'],
+                'intervals' => Scalor::MAIN_SCALES['dia']['M'],
                 'scale' => ['c♭', 'd♭', 'e♭', 'f♭', 'g♭', 'a♭', 'b♭'],
             ],
             'C♭ penta' => [
                 'key' => 'c♭',
-                'intervals' => ['T', '3', '4', '5', '7'],
-                'scale' => ['c♭', 'e♭', 'f♭', 'g♭', 'b♭'],
+                'intervals' => Scalor::MAIN_SCALES['penta']['M'],
+                'scale' => ['c♭', 'e♭', 'f♭', 'g♭', 'a♭'],
             ],
             'C♭ chromatic' => [
                 'key' => 'c♭',
@@ -73,13 +73,13 @@ class ScalorTest extends TestCase
 
             'C♯ dia' => [
                 'key' => 'c♯',
-                'intervals' => ['T', '2', '3', '4', '5', '6', '7'],
+                'intervals' => Scalor::MAIN_SCALES['dia']['M'],
                 'scale' => ['c♯', 'd♯', 'e♯', 'f♯', 'g♯', 'a♯', 'b♯'],
             ],
             'C♯ penta' => [
                 'key' => 'c♯',
-                'intervals' => ['T', '3', '4', '5', '7'],
-                'scale' => ['c♯', 'e♯', 'f♯', 'g♯', 'b♯'],
+                'intervals' => Scalor::MAIN_SCALES['penta']['M'],
+                'scale' => ['c♯', 'e♯', 'f♯', 'g♯', 'a♯'],
             ],
             'C♯ chromatic' => [
                 'key' => 'c♯',
@@ -89,18 +89,18 @@ class ScalorTest extends TestCase
 
             'A dia' => [
                 'key' => 'a',
-                'intervals' => ['T', '2', '3', '4', '5', '6', '7'],
+                'intervals' => Scalor::MAIN_SCALES['dia']['M'],
                 'scale' => ['a', 'b', 'c♯', 'd', 'e', 'f♯', 'g♯',],
             ],
             'am dia' => [
                 'key' => 'a',
-                'intervals' => ['T', '2', '3m', '4', '5', '6m', '7m'],
+                'intervals' => Scalor::MAIN_SCALES['dia']['m'],
                 'scale' => ['a', 'b', 'c', 'd', 'e', 'f', 'g'],
             ],
             'am penta' => [
                 'key' => 'a',
-                'intervals' => ['T', '3m', '4', '5', '7'],
-                'scale' => ['a', 'c', 'd', 'e', 'g♯'],
+                'intervals' => Scalor::MAIN_SCALES['penta']['m'],
+                'scale' => ['a', 'c', 'd', 'e', 'g'],
             ],
             'A chromatic' => [
                 'key' => 'a',
@@ -110,13 +110,13 @@ class ScalorTest extends TestCase
 
             'a♭m dia' => [
                 'key' => 'a♭',
-                'intervals' => ['T', '2', '3m', '4', '5', '6m', '7m'],
+                'intervals' => Scalor::MAIN_SCALES['dia']['m'],
                 'scale' => ['a♭', 'b♭', 'c♭', 'd♭', 'e♭', 'f♭', 'g♭'],
             ],
             'a♭m penta' => [
                 'key' => 'a♭',
-                'intervals' => ['T', '3m', '4', '5', '7'],
-                'scale' => ['a♭', 'c♭', 'd♭', 'e♭', 'g'],
+                'intervals' => Scalor::MAIN_SCALES['penta']['m'],
+                'scale' => ['a♭', 'c♭', 'd♭', 'e♭', 'g♭'],
             ],
             'A♭ chromatic' => [
                 'key' => 'a♭',
@@ -126,13 +126,13 @@ class ScalorTest extends TestCase
 
             'a♯m dia' => [
                 'key' => 'a♯',
-                'intervals' => ['T', '2', '3m', '4', '5', '6m', '7m'],
+                'intervals' => Scalor::MAIN_SCALES['dia']['m'],
                 'scale' => ['a♯', 'b♯', 'c♯', 'd♯', 'e♯', 'f♯', 'g♯'],
             ],
             'a♯m penta' => [
                 'key' => 'a♯',
-                'intervals' => ['T', '3m', '4', '5', '7'],
-                'scale' => ['a♯', 'c♯', 'd♯', 'e♯', 'g♯♯'],
+                'intervals' => Scalor::MAIN_SCALES['penta']['m'],
+                'scale' => ['a♯', 'c♯', 'd♯', 'e♯', 'g♯'],
             ],
             'A♯ chromatic' => [
                 'key' => 'a♯',

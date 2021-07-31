@@ -56,6 +56,21 @@ class Scalor
         '7a' => 12,
     ];
 
+    const MAIN_SCALES = [
+        'dia' => [ //see https://en.wikipedia.org/wiki/Major_scale
+            'M' => ['T', '2', '3', '4', '5', '6', '7'],
+            'm' => ['T', '2', '3m', '4', '5', '6m', '7m'],
+        ],
+        'penta' => [ //see https://en.wikipedia.org/wiki/Pentatonic_scale
+            'M' => ['T', '3', '4', '5', '6'],
+            'm' => ['T', '3m', '4', '5', '7m'],
+        ],
+        'blues' => [ //see https://en.wikipedia.org/wiki/Blues_scale
+            'M' => ['T', '3m', '3', '4', '5', '6', '7m', '7'],
+            'm' => ['T', '3m', '4', '5d', '5', '7m'],
+        ],
+    ];
+
     /**
      * @var array
      */
