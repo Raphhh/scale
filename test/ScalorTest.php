@@ -33,6 +33,11 @@ class ScalorTest extends TestCase
                 'intervals' => ['T', '2', '3m', '4', '5', '6m', '7m'],
                 'scale' => ['c', 'd', 'e♭', 'f', 'g', 'a♭', 'b♭'],
             ],
+            'C penta' => [
+                'key' => 'c',
+                'intervals' => ['T', '3', '4', '5', '7'],
+                'scale' => ['c', 'e', 'f', 'g', 'b'],
+            ],
             'cm penta' => [
                 'key' => 'c',
                 'intervals' => ['T', '3m', '4', '5', '7'],
@@ -50,11 +55,31 @@ class ScalorTest extends TestCase
                 'intervals' => ['T', '2', '3', '4', '5', '6', '7'],
                 'scale' => ['c♭', 'd♭', 'e♭', 'f♭', 'g♭', 'a♭', 'b♭'],
             ],
+            'C♭ penta' => [
+                'key' => 'c♭',
+                'intervals' => ['T', '3', '4', '5', '7'],
+                'scale' => ['c♭', 'e♭', 'f♭', 'g♭', 'b♭'],
+            ],
+            'C♭ chromatic' => [
+                'key' => 'c♭',
+                'intervals' => ['T', '2m', '2', '3m', '3', '4', '5m', '5', '6m', '6', '7m', '7'],
+                'scale' => ['c♭', 'd♭♭', 'd♭', 'e♭♭', 'e♭', 'f♭', 'g♭♭', 'g♭', 'a♭♭', 'a♭', 'b♭♭', 'b♭'],
+            ],
 
             'C♯ dia' => [
                 'key' => 'c♯',
                 'intervals' => ['T', '2', '3', '4', '5', '6', '7'],
                 'scale' => ['c♯', 'd♯', 'e♯', 'f♯', 'g♯', 'a♯', 'b♯'],
+            ],
+            'C♯ penta' => [
+                'key' => 'c♯',
+                'intervals' => ['T', '3', '4', '5', '7'],
+                'scale' => ['c♯', 'e♯', 'f♯', 'g♯', 'b♯'],
+            ],
+            'C♯ chromatic' => [
+                'key' => 'c♯',
+                'intervals' => ['T', '2m', '2', '3m', '3', '4', '5m', '5', '6m', '6', '7m', '7'],
+                'scale' => ['c♯', 'd', 'd♯', 'e', 'e♯', 'f♯', 'g', 'g♯', 'a', 'a♯', 'b', 'b♯'],
             ],
 
             'A dia' => [
@@ -72,17 +97,42 @@ class ScalorTest extends TestCase
                 'intervals' => ['T', '3m', '4', '5', '7'],
                 'scale' => ['a', 'c', 'd', 'e', 'g♯'],
             ],
+            'A chromatic' => [
+                'key' => 'a',
+                'intervals' => ['T', '2m', '2', '3m', '3', '4', '5m', '5', '6m', '6', '7m', '7'],
+                'scale' => ['a', 'b♭', 'b', 'c', 'c♯', 'd', 'e♭', 'e', 'f', 'f♯', 'g', 'g♯'],
+            ],
 
             'a♭m dia' => [
                 'key' => 'a♭',
                 'intervals' => ['T', '2', '3m', '4', '5', '6m', '7m'],
                 'scale' => ['a♭', 'b♭', 'c♭', 'd♭', 'e♭', 'f♭', 'g♭'],
             ],
+            'a♭m penta' => [
+                'key' => 'a♭',
+                'intervals' => ['T', '3m', '4', '5', '7'],
+                'scale' => ['a♭', 'c♭', 'd♭', 'e♭', 'g'],
+            ],
+            'A♭ chromatic' => [
+                'key' => 'a♭',
+                'intervals' => ['T', '2m', '2', '3m', '3', '4', '5m', '5', '6m', '6', '7m', '7'],
+                'scale' => ['a♭', 'b♭♭', 'b♭', 'c♭', 'c', 'd♭', 'e♭♭', 'e♭', 'f♭', 'f', 'g♭', 'g'],
+            ],
 
             'a♯m dia' => [
                 'key' => 'a♯',
                 'intervals' => ['T', '2', '3m', '4', '5', '6m', '7m'],
                 'scale' => ['a♯', 'b♯', 'c♯', 'd♯', 'e♯', 'f♯', 'g♯'],
+            ],
+            'a♯m penta' => [
+                'key' => 'a♯',
+                'intervals' => ['T', '3m', '4', '5', '7'],
+                'scale' => ['a♯', 'c♯', 'd♯', 'e♯', 'g♯♯'],
+            ],
+            'A♯ chromatic' => [
+                'key' => 'a♯',
+                'intervals' => ['T', '2m', '2', '3m', '3', '4', '5m', '5', '6m', '6', '7m', '7'],
+                'scale' => ['a♯', 'b', 'b♯', 'c♯', 'c♯♯', 'd♯', 'e', 'e♯', 'f♯', 'f♯♯', 'g♯', 'g♯♯'],
             ],
         ];
     }
