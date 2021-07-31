@@ -43,9 +43,14 @@ class ScalorTest extends TestCase
                 'intervals' => ['T', '3m', '4', '5', '7'],
                 'scale' => ['c', 'e♭', 'f', 'g', 'b'],
             ],
+            'cm blues' => [
+                'key' => 'c',
+                'intervals' => ['T', '3m', '4', '5d', '5', '6'],
+                'scale' => ['c', 'e♭', 'f', 'g♭', 'g', 'a'],
+            ],
             'C chromatic' => [
                 'key' => 'c',
-                'intervals' => ['T', '2m', '2', '3m', '3', '4', '5m', '5', '6m', '6', '7m', '7'],
+                'intervals' => ['T', '2m', '2', '3m', '3', '4', '5d', '5', '6m', '6', '7m', '7'],
                 //note: we have only the descending scale
                 'scale' => ['c', 'd♭', 'd', 'e♭', 'e', 'f', 'g♭', 'g', 'a♭', 'a', 'b♭', 'b'],
             ],
@@ -62,7 +67,7 @@ class ScalorTest extends TestCase
             ],
             'C♭ chromatic' => [
                 'key' => 'c♭',
-                'intervals' => ['T', '2m', '2', '3m', '3', '4', '5m', '5', '6m', '6', '7m', '7'],
+                'intervals' => ['T', '2m', '2', '3m', '3', '4', '5d', '5', '6m', '6', '7m', '7'],
                 'scale' => ['c♭', 'd♭♭', 'd♭', 'e♭♭', 'e♭', 'f♭', 'g♭♭', 'g♭', 'a♭♭', 'a♭', 'b♭♭', 'b♭'],
             ],
 
@@ -78,7 +83,7 @@ class ScalorTest extends TestCase
             ],
             'C♯ chromatic' => [
                 'key' => 'c♯',
-                'intervals' => ['T', '2m', '2', '3m', '3', '4', '5m', '5', '6m', '6', '7m', '7'],
+                'intervals' => ['T', '2m', '2', '3m', '3', '4', '5d', '5', '6m', '6', '7m', '7'],
                 'scale' => ['c♯', 'd', 'd♯', 'e', 'e♯', 'f♯', 'g', 'g♯', 'a', 'a♯', 'b', 'b♯'],
             ],
 
@@ -99,7 +104,7 @@ class ScalorTest extends TestCase
             ],
             'A chromatic' => [
                 'key' => 'a',
-                'intervals' => ['T', '2m', '2', '3m', '3', '4', '5m', '5', '6m', '6', '7m', '7'],
+                'intervals' => ['T', '2m', '2', '3m', '3', '4', '5d', '5', '6m', '6', '7m', '7'],
                 'scale' => ['a', 'b♭', 'b', 'c', 'c♯', 'd', 'e♭', 'e', 'f', 'f♯', 'g', 'g♯'],
             ],
 
@@ -115,7 +120,7 @@ class ScalorTest extends TestCase
             ],
             'A♭ chromatic' => [
                 'key' => 'a♭',
-                'intervals' => ['T', '2m', '2', '3m', '3', '4', '5m', '5', '6m', '6', '7m', '7'],
+                'intervals' => ['T', '2m', '2', '3m', '3', '4', '5d', '5', '6m', '6', '7m', '7'],
                 'scale' => ['a♭', 'b♭♭', 'b♭', 'c♭', 'c', 'd♭', 'e♭♭', 'e♭', 'f♭', 'f', 'g♭', 'g'],
             ],
 
@@ -131,7 +136,7 @@ class ScalorTest extends TestCase
             ],
             'A♯ chromatic' => [
                 'key' => 'a♯',
-                'intervals' => ['T', '2m', '2', '3m', '3', '4', '5m', '5', '6m', '6', '7m', '7'],
+                'intervals' => ['T', '2m', '2', '3m', '3', '4', '5d', '5', '6m', '6', '7m', '7'],
                 'scale' => ['a♯', 'b', 'b♯', 'c♯', 'c♯♯', 'd♯', 'e', 'e♯', 'f♯', 'f♯♯', 'g♯', 'g♯♯'],
             ],
         ];

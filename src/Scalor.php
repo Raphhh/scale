@@ -21,19 +21,39 @@ class Scalor
         ['g♯', 'a♭'],
     ];
 
+    /**
+     * @see https://en.wikipedia.org/wiki/Interval_(music)
+     * @see https://en.wikipedia.org/wiki/Chord_names_and_symbols_(popular_music)
+     *
+     * Warning: special notations:
+     *  - m = minor
+     *  - d = diminished
+     *  - a = augmented
+     */
     const INTERVAL_MAPPING = [
         'T' => 0,
+        '2d' => 0,
         '2m' => 1,
         '2' => 2,
+        '2a' => 2,
+        '3d' => 2,
         '3m' => 3,
         '3' => 4,
+        '3a' => 5,
+        '4d' => 4,
         '4' => 5,
-        '5m' => 6,
+        '4a' => 6,
+        '5d' => 6,
         '5' => 7,
+        '5a' => 8,
+        '6d' => 7,
         '6m' => 8,
         '6' => 9,
+        '6a' => 10,
+        '7d' => 9,
         '7m' => 10,
         '7' => 11,
+        '7a' => 12,
     ];
 
     /**
@@ -165,6 +185,6 @@ class Scalor
         if ($interval === 'T') {
             return 1;
         }
-        return str_replace('m', '', $interval);
+        return str_replace(['m', 'd', 'a'], '', $interval);
     }
 }
