@@ -155,68 +155,234 @@ class GuitarBoardTest extends TestCase
      * @param array $fingerboards
      * @dataProvider provideTestFilterFingerBoards
      */
-    public function testFilterFingerBoards($key, array $intervals, array $fingerboards)
-    {
+    public function testFilterFingerBoards(
+        $key,
+        array $intervals,
+        array $fingerboards,
+        $simplifyAccidental,
+        $simplifyTemperament
+    ) {
         $guitarBoard = new GuitarBoard(
             new Scalor(),
             ['e', 'b',],
             5
         );
-        $this->assertSame($fingerboards, $guitarBoard->filterFingerBoards($key, $intervals));
+        $this->assertSame(
+            $fingerboards,
+            $guitarBoard->filterFingerBoards($key, $intervals, $simplifyAccidental, $simplifyTemperament)
+        );
     }
 
     public function provideTestFilterFingerBoards()
     {
         return [
-            'c scale' => [
-                'key' => 'c',
-                'intervals' => ['T', '2', '3', '4', '5', '6', '7'],
+            'all' => [
+                'key' => 'c♭',
+                'intervals' => ['T', '2', '3m', '4', '5', '6m', '7m'],
                 'finger_boards' => [
                     0 => [
                         [
                             'position' => 0,
-                            'interval' => '3',
-                            'note' => 'e',
+                            'interval' => '4',
+                            'note' => 'f♭',
                         ],
                         [
-                            'position' => 1,
-                            'interval' => '4',
-                            'note' => 'f',
+                            'position' => 2,
+                            'interval' => '5',
+                            'note' => 'g♭',
                         ],
                         [
                             'position' => 3,
+                            'interval' => '6m',
+                            'note' => 'a♭♭',
+                        ],
+                        [
+                            'position' => 5,
+                            'interval' => '7m',
+                            'note' => 'b♭♭',
+                        ],
+                    ],
+                    1 => [
+                        [
+                            'position' => 0,
+                            'interval' => 'T',
+                            'note' => 'c♭',
+                        ],
+                        [
+                            'position' => 2,
+                            'interval' => '2',
+                            'note' => 'd♭',
+                        ],
+                        [
+                            'position' => 3,
+                            'interval' => '3m',
+                            'note' => 'e♭♭',
+                        ],
+                        [
+                            'position' => 5,
+                            'interval' => '4',
+                            'note' => 'f♭',
+                        ],
+                    ],
+                ],
+                'simplify_accidental' => false,
+                'simplify_temperament' => false,
+            ],
+            'simplify_accidental' => [
+                'key' => 'c♭',
+                'intervals' => ['T', '2', '3m', '4', '5', '6m', '7m'],
+                'finger_boards' => [
+                    0 => [
+                        [
+                            'position' => 0,
+                            'interval' => '4',
+                            'note' => 'f♭',
+                        ],
+                        [
+                            'position' => 2,
                             'interval' => '5',
+                            'note' => 'g♭',
+                        ],
+                        [
+                            'position' => 3,
+                            'interval' => '6m',
                             'note' => 'g',
                         ],
                         [
                             'position' => 5,
-                            'interval' => '6',
+                            'interval' => '7m',
                             'note' => 'a',
                         ],
                     ],
                     1 => [
                         [
                             'position' => 0,
-                            'interval' => '7',
-                            'note' => 'b',
+                            'interval' => 'T',
+                            'note' => 'c♭',
                         ],
                         [
-                            'position' => 1,
-                            'interval' => 'T',
-                            'note' => 'c',
+                            'position' => 2,
+                            'interval' => '2',
+                            'note' => 'd♭',
                         ],
                         [
                             'position' => 3,
-                            'interval' => '2',
+                            'interval' => '3m',
                             'note' => 'd',
                         ],
                         [
                             'position' => 5,
-                            'interval' => '3',
+                            'interval' => '4',
+                            'note' => 'f♭',
+                        ],
+                    ],
+                ],
+                'simplify_accidental' => true,
+                'simplify_temperament' => false,
+            ],
+            'simplify_temperament' => [
+                'key' => 'c♭',
+                'intervals' => ['T', '2', '3m', '4', '5', '6m', '7m'],
+                'finger_boards' => [
+                    0 => [
+                        [
+                            'position' => 0,
+                            'interval' => '4',
+                            'note' => 'e',
+                        ],
+                        [
+                            'position' => 2,
+                            'interval' => '5',
+                            'note' => 'g♭',
+                        ],
+                        [
+                            'position' => 3,
+                            'interval' => '6m',
+                            'note' => 'a♭♭',
+                        ],
+                        [
+                            'position' => 5,
+                            'interval' => '7m',
+                            'note' => 'b♭♭',
+                        ],
+                    ],
+                    1 => [
+                        [
+                            'position' => 0,
+                            'interval' => 'T',
+                            'note' => 'b',
+                        ],
+                        [
+                            'position' => 2,
+                            'interval' => '2',
+                            'note' => 'd♭',
+                        ],
+                        [
+                            'position' => 3,
+                            'interval' => '3m',
+                            'note' => 'e♭♭',
+                        ],
+                        [
+                            'position' => 5,
+                            'interval' => '4',
                             'note' => 'e',
                         ],
                     ],
                 ],
+                'simplify_accidental' => false,
+                'simplify_temperament' => true,
+            ],
+            'simplify_accidental' => [
+                'key' => 'c♭',
+                'intervals' => ['T', '2', '3m', '4', '5', '6m', '7m'],
+                'finger_boards' => [
+                    0 => [
+                        [
+                            'position' => 0,
+                            'interval' => '4',
+                            'note' => 'e',
+                        ],
+                        [
+                            'position' => 2,
+                            'interval' => '5',
+                            'note' => 'g♭',
+                        ],
+                        [
+                            'position' => 3,
+                            'interval' => '6m',
+                            'note' => 'g',
+                        ],
+                        [
+                            'position' => 5,
+                            'interval' => '7m',
+                            'note' => 'a',
+                        ],
+                    ],
+                    1 => [
+                        [
+                            'position' => 0,
+                            'interval' => 'T',
+                            'note' => 'b',
+                        ],
+                        [
+                            'position' => 2,
+                            'interval' => '2',
+                            'note' => 'd♭',
+                        ],
+                        [
+                            'position' => 3,
+                            'interval' => '3m',
+                            'note' => 'd',
+                        ],
+                        [
+                            'position' => 5,
+                            'interval' => '4',
+                            'note' => 'e',
+                        ],
+                    ],
+                ],
+                'simplify_accidental' => true,
+                'simplify_temperament' => true,
             ],
         ];
     }

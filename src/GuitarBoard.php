@@ -63,11 +63,13 @@ class GuitarBoard
     /**
      * @param string $key
      * @param array $intervals
+     * @param bool $simplifyAccidental
+     * @param bool $simplifyTemperament
      * @return array
      */
-    public function filterFingerBoards($key, array $intervals)
+    public function filterFingerBoards($key, array $intervals, $simplifyAccidental = false, $simplifyTemperament = false)
     {
-        $scale = array_flip($this->scalor->filterNotes($key, $intervals));
+        $scale = array_flip($this->scalor->filterNotes($key, $intervals, $simplifyAccidental, $simplifyTemperament));
 
         $result = [];
         foreach ($this->getNotes() as $stringPosition => $notes) {
