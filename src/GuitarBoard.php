@@ -16,24 +16,12 @@ class GuitarBoard
      * @var int
      */
     private $boardLength;
-    /**
-     * @var array
-     */
-    private $notes = [];
 
     public function __construct(Scalor $scalor, array $tuning = ['e', 'b', 'g', 'd', 'a', 'e'], $boardLength = 24)
     {
         $this->scalor = $scalor;
         $this->boardLength = $boardLength;
         $this->changeTuning($tuning);
-    }
-
-    /**
-     * @return array
-     */
-    public function getNotes()
-    {
-        return $this->notes;
     }
 
     /**
@@ -51,18 +39,25 @@ class GuitarBoard
     public function changeTuning(array $tuning)
     {
         $this->tuning = $tuning;
-        $this->notes = [];
+    }
+
+    /**
+     * @return array
+     */
+    public function getNotes($simplifyAccidental = false, $simplifyTemperament = false)
+    {
+        $result = [];
         foreach ($this->tuning as $stringPosition => $stringNote) {
-            $notes = $this->scalor->getChromaticNotesFromKey($stringNote);
+            $notes = $this->scalor->getChromaticNotesFromKey($stringNote, $simplifyAccidental, $simplifyTemperament);
             $notePosition = 0;
             for ($i = 0; $i <= $this->boardLength; ++$i) {
-                $this->notes[$stringPosition][$i] = $notes[$notePosition];
+                $result[$stringPosition][$i] = $notes[$notePosition];
                 if (++$notePosition >= count($notes)) {
                     $notePosition = 0;
                 }
             }
         }
-        return $this;
+        return $result;
     }
 
     /**
@@ -75,7 +70,7 @@ class GuitarBoard
         $scale = array_flip($this->scalor->filterNotes($key, $intervals));
 
         $result = [];
-        foreach ($this->notes as $stringPosition => $notes) {
+        foreach ($this->getNotes() as $stringPosition => $notes) {
             foreach ($notes as $position => $names) {
                 foreach ($names as $name) {
                     if (array_key_exists($name, $scale)) {
