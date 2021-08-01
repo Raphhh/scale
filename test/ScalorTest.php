@@ -144,7 +144,65 @@ class ScalorTest extends TestCase
 
     /**
      * @param $key
+     * @param array $intervals
+     * @param array $scale
+     * @param $simplifyAccidental
+     * @param $simplifyTemperament
+     * @dataProvider provideTestFilterNotesWithSimplifications
+     */
+    public function testFilterNotesWithSimplifications(
+        $key,
+        array $intervals,
+        array $scale,
+        $simplifyAccidental,
+        $simplifyTemperament
+    ) {
+        $scalor = new Scalor();
+        $this->assertSame(
+            array_combine($intervals, $scale),
+            $scalor->filterNotes($key, $intervals, $simplifyAccidental, $simplifyTemperament)
+        );
+    }
+
+    public function provideTestFilterNotesWithSimplifications()
+    {
+        return [
+            'all' => [
+                'key' => 'c♭',
+                'intervals' => ['T', '2m', '2', '3m', '3', '4', '5d', '5', '6m', '6', '7m', '7'],
+                'scale' => ['c♭', 'd♭♭', 'd♭', 'e♭♭', 'e♭', 'f♭', 'g♭♭', 'g♭', 'a♭♭', 'a♭', 'b♭♭', 'b♭'],
+                'simplify_accidental' => false,
+                'simplify_temperament' => false,
+            ],
+            'simplify_accidental' => [
+                'key' => 'c♭',
+                'intervals' => ['T', '2m', '2', '3m', '3', '4', '5d', '5', '6m', '6', '7m', '7'],
+                'scale' => ['c♭', 'c', 'd♭', 'd', 'e♭', 'f♭', 'f', 'g♭', 'g', 'a♭', 'a', 'b♭'],
+                'simplify_accidental' => true,
+                'simplify_temperament' => false,
+            ],
+            'simplify_temperament' => [
+                'key' => 'c♭',
+                'intervals' => ['T', '2m', '2', '3m', '3', '4', '5d', '5', '6m', '6', '7m', '7'],
+                'scale' => ['b', 'd♭♭', 'd♭', 'e♭♭', 'e♭', 'e', 'g♭♭', 'g♭', 'a♭♭', 'a♭', 'b♭♭', 'b♭'],
+                'simplify_accidental' => false,
+                'simplify_temperament' => true,
+            ],
+            'both' => [
+                'key' => 'c♭',
+                'intervals' => ['T', '2m', '2', '3m', '3', '4', '5d', '5', '6m', '6', '7m', '7'],
+                'scale' => ['b', 'c', 'd♭', 'd', 'e♭', 'e', 'f', 'g♭', 'g', 'a♭', 'a', 'b♭'],
+                'simplify_accidental' => true,
+                'simplify_temperament' => true,
+            ],
+        ];
+    }
+
+    /**
+     * @param $key
      * @param array $result
+     * @param $simplifyAccidental
+     * @param $simplifyTemperament
      * @dataProvider provideTestGetChromaticNotesFromKey
      */
     public function testGetChromaticNotesFromKey($key, array $result, $simplifyAccidental, $simplifyTemperament)
@@ -216,7 +274,7 @@ class ScalorTest extends TestCase
                 'simplify_accidental' => false,
                 'simplify_temperament' => true,
             ],
-            'simplify_accidental' => [
+            'both' => [
                 'key' => 'c',
                 'result' => [
                     ['c'],

@@ -83,18 +83,24 @@ class Scalor
     /**
      * @param $key
      * @param array $intervals
+     * @param bool $simplifyAccidental
+     * @param bool $simplifyTemperament
      * @return array
      */
-    public function filterNotes($key, array $intervals) {
+    public function filterNotes($key, array $intervals, $simplifyAccidental = false, $simplifyTemperament = false) {
         $notes = $this->getChromaticNotesFromKey($key);
         $dia = $this->getDiaNotesFromKey($key);
         $result = [];
+
         foreach ($intervals as $interval) {
             $result[$interval] = $this->conformNote(
                 $notes[$this->convertIntervalName($interval)],
-                $dia[$this->convertIntervalToDegree($interval)]
+                $dia[$this->convertIntervalToDegree($interval)],
+                $simplifyAccidental,
+                $simplifyTemperament
             );
         }
+
         return $result;
     }
 
@@ -183,12 +189,20 @@ class Scalor
     /**
      * @param string[] $notes
      * @param string $pure
+     * @param bool $simplifyAccidental
+     * @param bool $simplifyTemperament
      * @return string
      */
-    private function conformNote(array $notes, $pure)
+    private function conformNote(array $notes, $pure, $simplifyAccidental, $simplifyTemperament)
     {
         foreach ($notes as $note) {
             if (strpos($note, $pure) === 0) {
+                if ($simplifyAccidental) {
+                    $note = $this->simplifyAccidental($note);
+                }
+                if ($simplifyTemperament) {
+                    $note = $this->simplifyTemperament($note);
+                }
                 return $note;
             }
         }
