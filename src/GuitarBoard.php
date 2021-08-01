@@ -67,7 +67,7 @@ class GuitarBoard
      * @param bool $simplifyTemperament
      * @return array
      */
-    public function filterFingerBoards($key, array $intervals, $simplifyAccidental = false, $simplifyTemperament = false)
+    public function getScaledNotes($key, array $intervals, $simplifyAccidental = false, $simplifyTemperament = false)
     {
         $scale = array_flip($this->scalor->filterNotes($key, $intervals, $simplifyAccidental, $simplifyTemperament));
 

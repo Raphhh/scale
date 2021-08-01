@@ -153,9 +153,9 @@ class GuitarBoardTest extends TestCase
      * @param $key
      * @param array $intervals
      * @param array $fingerboards
-     * @dataProvider provideTestFilterFingerBoards
+     * @dataProvider provideTestGetScaledNotes
      */
-    public function testFilterFingerBoards(
+    public function testGetScaledNotes(
         $key,
         array $intervals,
         array $fingerboards,
@@ -169,11 +169,11 @@ class GuitarBoardTest extends TestCase
         );
         $this->assertSame(
             $fingerboards,
-            $guitarBoard->filterFingerBoards($key, $intervals, $simplifyAccidental, $simplifyTemperament)
+            $guitarBoard->getScaledNotes($key, $intervals, $simplifyAccidental, $simplifyTemperament)
         );
     }
 
-    public function provideTestFilterFingerBoards()
+    public function provideTestGetScaledNotes()
     {
         return [
             'all' => [

@@ -11,7 +11,7 @@ Give all the notes of a specific scale and their position for the board of an in
 $boardFactory = new \Scale\BoardFactory();
 $guitarBoard = $boardFactory->createGuitarBoard();
 
-$notes = $guitarBoard->filterFingerBoards('e', ['T', '2', '3m', '4', '5', '6m', '7m']);
+$notes = $guitarBoard->getScaledNotes('e', ['T', '2', '3m', '4', '5', '6m', '7m']);
 
 var_dump($notes); 
 /*
